@@ -9,7 +9,8 @@
   "type": "module",
   "scripts": {
     "start": "node weather.js",
-    "start-help": "node weather.js -h"
+    "start-help": "node weather.js -h",
+    "start-token": "node weather.js -t testToken"
   },
   "repository": {
     "type": "git",

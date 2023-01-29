@@ -11,10 +11,11 @@ export const printSuccess = (success) => {
 
 export const printHelp = () => {
 	console.log(
-		dedent`${chalk.bgBlackBright.bold(' HELP ')}
-		Without parameters - return weather
-		-s [CITY] for setup city
-		-h for help
-		-t [API_KEY] for token save
-		`);
+		dedent
+			`${chalk.bgBlackBright.bold(' HELP ')}
+			Without parameters - return weather
+			-s [CITY] for setup city
+			-h for help
+			-t [API_KEY] for token save
+			`);
 }
