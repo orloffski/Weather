@@ -19,9 +19,23 @@ const saveToken = async (token) => {
 	}
 }
 
+const saveCity= async (city) => {
+	if(!city.length){
+		printError('city is empty')
+		return;
+	}
+
+	try{
+		await saveKeyValue({key: TOKEN_DICTIONARY.city, value: city});
+		printSuccess('City saved');
+	} catch (e){
+		printError(e.message);
+	}
+}
+
 const getForecast = async () => {
 	try{
-		const data = await getWeather(process.env.CITY ?? getKeyValue('city'));
+		const data = await getWeather();
 
 		console.log(data);
 	} catch(e){
@@ -41,14 +55,17 @@ const initCLI = () => {
 
 	if(args.h){
 		printHelp();
+		return;
 	}
 
 	if(args.s){
-		
+		saveCity(args.s);
+		return;
 	}
 
 	if(args.t){
-		saveToken(args.t)
+		saveToken(args.t);
+		return;
 	}
 
 	getForecast();
