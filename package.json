@@ -9,8 +9,9 @@
   "type": "module",
   "scripts": {
     "start": "node weather.js",
-    "test-help": "node weather.js -h",
-    "test-token": "node weather.js -t testToken"
+    "view_help": "node weather.js -h",
+    "set_token": "node weather.js -t testToken",
+    "set_city": "node weather.js -s Minsk"
   },
   "repository": {
     "type": "git",
