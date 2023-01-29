@@ -19,3 +19,16 @@ export const printHelp = () => {
 			-t [API_KEY] for token save
 			`);
 }
+
+export const printWeather = (data) => {
+	console.log(
+		dedent`
+		${chalk.bgYellow.bold(' WEATHER ')} in ${data.name}
+		${data.weather[0].description}
+		Temp: ${data.main.temp}, feels like: ${data.main.feels_like}
+		Pressure: ${data.main.pressure}hPa
+		Humidity: ${data.main.humidity}%
+		Wind speed: ${data.wind.speed} meter/sec
+		`
+	);
+}

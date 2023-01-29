@@ -2,8 +2,8 @@
 
 import { getArgs } from './helpers/args.js'
 import { getWeather } from './services/api.service.js';
-import { printHelp, printSuccess, printError } from './services/log.service.js';
-import { getKeyValue, saveKeyValue, TOKEN_DICTIONARY } from './services/storage.service.js';
+import { printHelp, printSuccess, printError, printWeather } from './services/log.service.js';
+import { saveKeyValue, TOKEN_DICTIONARY } from './services/storage.service.js';
 
 const saveToken = async (token) => {
 	if(!token.length){
@@ -21,7 +21,7 @@ const saveToken = async (token) => {
 
 const saveCity= async (city) => {
 	if(!city.length){
-		printError('city is empty')
+		printError('city is empty or incorrect')
 		return;
 	}
 
@@ -37,7 +37,7 @@ const getForecast = async () => {
 	try{
 		const data = await getWeather();
 
-		console.log(data);
+		printWeather(data)
 	} catch(e){
 		if(e?.response?.status == 404){
 			printError('empty city, setup with command -s [CITY]')
@@ -54,21 +54,18 @@ const initCLI = () => {
 	const args = getArgs(process.argv);
 
 	if(args.h){
-		printHelp();
-		return;
+		return printHelp();
 	}
 
 	if(args.s){
-		saveCity(args.s);
-		return;
+		return saveCity(args.s);
 	}
 
 	if(args.t){
-		saveToken(args.t);
-		return;
+		return saveToken(args.t);
 	}
 
-	getForecast();
+	return getForecast();
 };
 
 initCLI();
