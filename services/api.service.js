@@ -3,7 +3,7 @@ import https from 'https';
 import { getKeyValue, TOKEN_DICTIONARY } from './storage.service.js';
 
 export const getWeather = async (city) => {
-	const token = await getKeyValue(TOKEN_DICTIONARY.token);
+	const token = process.env.token ?? await getKeyValue(TOKEN_DICTIONARY.token);
 
 	if(!token){
 		throw new Error('empty token API, setup with command -t [API_KEY]')
@@ -18,6 +18,8 @@ export const getWeather = async (city) => {
 			units: 'metric'
 		}
 	});
+
+	console.log(data);
 
 	return data;
 
